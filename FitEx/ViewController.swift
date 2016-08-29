@@ -9,6 +9,8 @@
 import UIKit
 
 class ViewController: UIViewController {
+    @IBOutlet weak var textUsername: UITextField!
+    @IBOutlet weak var textPassword: UITextField!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,7 +21,15 @@ class ViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
-
+    @IBAction func dismissUsernameKeyboard(sender: AnyObject) {
+        self.resignFirstResponder()
+    }
+    @IBAction func dismissPasswordKeyboard(sender: AnyObject) {
+        self.resignFirstResponder()
+    }
+    @IBAction func buttonLogin(sender: AnyObject) {
+        textUsername.text = "deal with JSON data"
+    }
+    
 }
 

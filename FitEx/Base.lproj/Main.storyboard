@@ -29,6 +29,9 @@
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <textInputTraits key="textInputTraits" returnKeyType="done"/>
+                                <connections>
+                                    <action selector="dismissUsernameKeyboard:" destination="BYZ-38-t0r" eventType="editingDidEndOnExit" id="MUj-7t-PdN"/>
+                                </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="S7p-Qf-bi6">
                                 <rect key="frame" x="208" y="323" width="185" height="30"/>
@@ -36,7 +39,10 @@
                                     <constraint firstAttribute="width" constant="185" id="ZrP-LO-COL"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <textInputTraits key="textInputTraits" returnKeyType="done"/>
+                                <textInputTraits key="textInputTraits" returnKeyType="done" secureTextEntry="YES"/>
+                                <connections>
+                                    <action selector="dismissPasswordKeyboard:" destination="BYZ-38-t0r" eventType="editingDidEndOnExit" id="EtN-V2-leG"/>
+                                </connections>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HdP-1v-Gu8">
                                 <rect key="frame" x="260" y="383" width="80" height="30"/>
@@ -65,6 +71,9 @@
                                 <state key="normal" title="Login">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
+                                <connections>
+                                    <action selector="buttonLogin:" destination="BYZ-38-t0r" eventType="touchUpInside" id="FQt-hS-S8q"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.50196081400000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -81,6 +90,10 @@
                             <constraint firstItem="zY5-bu-vb4" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="zEt-ax-wBO"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="textPassword" destination="S7p-Qf-bi6" id="Oxu-pO-tZT"/>
+                        <outlet property="textUsername" destination="zY5-bu-vb4" id="zgh-vP-adq"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
