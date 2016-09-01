@@ -7,14 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1531AB601D77E15E008E4F08 /* CenterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1531AB5F1D77E15E008E4F08 /* CenterViewController.swift */; };
 		153E84C31D749DCB00C25A8A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 153E84C21D749DCB00C25A8A /* AppDelegate.swift */; };
 		153E84C51D749DCB00C25A8A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 153E84C41D749DCB00C25A8A /* ViewController.swift */; };
 		153E84C81D749DCB00C25A8A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 153E84C61D749DCB00C25A8A /* Main.storyboard */; };
 		153E84CA1D749DCB00C25A8A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 153E84C91D749DCB00C25A8A /* Assets.xcassets */; };
 		153E84CD1D749DCB00C25A8A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 153E84CB1D749DCB00C25A8A /* LaunchScreen.storyboard */; };
+		15C2848C1D75E33000E9D988 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15C2848B1D75E33000E9D988 /* HealthKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1531AB5F1D77E15E008E4F08 /* CenterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CenterViewController.swift; sourceTree = "<group>"; };
 		153E84BF1D749DCB00C25A8A /* FitEx.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FitEx.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		153E84C21D749DCB00C25A8A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		153E84C41D749DCB00C25A8A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -22,6 +25,8 @@
 		153E84C91D749DCB00C25A8A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		153E84CC1D749DCB00C25A8A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		153E84CE1D749DCB00C25A8A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		15C2848B1D75E33000E9D988 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
+		15C2848D1D75E33000E9D988 /* FitEx.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = FitEx.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,6 +34,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				15C2848C1D75E33000E9D988 /* HealthKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -38,6 +44,7 @@
 		153E84B61D749DCA00C25A8A = {
 			isa = PBXGroup;
 			children = (
+				15C2848B1D75E33000E9D988 /* HealthKit.framework */,
 				153E84C11D749DCB00C25A8A /* FitEx */,
 				153E84C01D749DCB00C25A8A /* Products */,
 			);
@@ -54,12 +61,14 @@
 		153E84C11D749DCB00C25A8A /* FitEx */ = {
 			isa = PBXGroup;
 			children = (
+				15C2848D1D75E33000E9D988 /* FitEx.entitlements */,
 				153E84C21D749DCB00C25A8A /* AppDelegate.swift */,
 				153E84C41D749DCB00C25A8A /* ViewController.swift */,
 				153E84C61D749DCB00C25A8A /* Main.storyboard */,
 				153E84C91D749DCB00C25A8A /* Assets.xcassets */,
 				153E84CB1D749DCB00C25A8A /* LaunchScreen.storyboard */,
 				153E84CE1D749DCB00C25A8A /* Info.plist */,
+				1531AB5F1D77E15E008E4F08 /* CenterViewController.swift */,
 			);
 			path = FitEx;
 			sourceTree = "<group>";
@@ -97,6 +106,11 @@
 					153E84BE1D749DCA00C25A8A = {
 						CreatedOnToolsVersion = 7.3.1;
 						DevelopmentTeam = C34536CJNF;
+						SystemCapabilities = {
+							com.apple.HealthKit = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -136,6 +150,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1531AB601D77E15E008E4F08 /* CenterViewController.swift in Sources */,
 				153E84C51D749DCB00C25A8A /* ViewController.swift in Sources */,
 				153E84C31D749DCB00C25A8A /* AppDelegate.swift in Sources */,
 			);
@@ -252,6 +267,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = FitEx/FitEx.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = FitEx/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
@@ -265,6 +281,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = FitEx/FitEx.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = FitEx/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
@@ -293,6 +310,7 @@
 				153E84D31D749DCB00C25A8A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

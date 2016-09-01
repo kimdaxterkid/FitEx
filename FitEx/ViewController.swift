@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import HealthKit
 
 class ViewController: UIViewController {
     @IBOutlet weak var textUsername: UITextField!
@@ -28,39 +29,53 @@ class ViewController: UIViewController {
         self.resignFirstResponder()
     }
     @IBAction func buttonLogin(sender: AnyObject) {
-        let jsondata = "[\"username\":\"" + textUsername.text! + "\",\"password\":\"" + textPassword.text! + "\"]"
-        print("My json data :\(jsondata)")
-        textUsername.text = "deal with JSON data"
         // prepare json data
-        let json = [ "username":textUsername.text! , "password": textPassword.text! ]
-        // create post request
-        do {
-            let url = NSURL(string: "http://128.173.239.215/login")!
-            let request = NSMutableURLRequest(URL: url)
-            request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-            request.HTTPMethod = "POST"
-            let jsonData = try NSJSONSerialization.dataWithJSONObject(json, options: .PrettyPrinted)
-            print(jsonData)
-            // insert json data to the request
-            request.HTTPBody = jsonData
-            let task = NSURLSession.sharedSession().dataTaskWithRequest(request){ data, response, error in
-                    if error != nil{
-                        print("Error -> \(error)")
-                        return
+        let username:String! = textUsername.text
+        let password:String! = textPassword.text
+        if (username.isEmpty) {
+            print("Please input your username")
+        }
+        else if (password.isEmpty) {
+            print("Please input your password")
+        }
+        else {
+            let json = [ "username":username, "password":password ]
+            // create post request
+            do {
+                let url = NSURL(string: "http://128.173.239.215/login")!
+                let request = NSMutableURLRequest(URL: url)
+                request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+                request.HTTPMethod = "POST"
+                let jsonData = try NSJSONSerialization.dataWithJSONObject(json, options: .PrettyPrinted)
+                // insert json data to the request
+                request.HTTPBody = jsonData
+                let task = NSURLSession.sharedSession().dataTaskWithRequest(request){ data, response, error in
+                        if error != nil{
+                            print("dataTaskWithRequest Error -> \(error)")
+                            return
+                        }
+                        do {
+                            let result = try NSJSONSerialization.JSONObjectWithData(data!, options: []) as? [String:AnyObject]
+                            //print("\(result)")
+                            print("\(response)");
+                        } catch {
+                            print("Error -> \(error)")
+                        }
                     }
-                    do {
-                        let result = try NSJSONSerialization.JSONObjectWithData(data!, options: []) as? [String:AnyObject]
-                    
-                        print("Result -> \(result)")
-                    
-                    } catch {
-                        print("Error -> \(error)")
-                    }
-                }
-            task.resume()
-        } catch {
-            print("jsonData error")
+                task.resume()
+            } catch {
+                print("buttonLogin -> jsonData Error")
+            }
+            self.performSegueWithIdentifier("segueIdentifier", sender: self)
         }
     }
+//    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+//        if(segue.identifier == "segueIdentifier") {
+//            let centerVC: CenterViewController = segue.destinationViewController as! CenterViewController
+//            centerVC.label1.text = self.textUsername.text!
+//            centerVC.label2.text = self.textPassword.text!
+//        }
+//
+//    }
 }
 
