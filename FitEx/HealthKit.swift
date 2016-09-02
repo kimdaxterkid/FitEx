@@ -1,21 +1,23 @@
 //
-//  CenterViewController.swift
+//  HealthKit.swift
 //  FitEx
 //
 //  Created by Taiwen Jin on 9/1/16.
 //  Copyright © 2016 Taiwen Jin. All rights reserved.
 //
+
 import Foundation
-import UIKit
 import HealthKit
 
-class CenterViewController: UIViewController {
+class HealthKit
+{
+    let storage = HKHealthStore()
+    var steps: Double = 0.0
+    init()
+    {
+        checkAuthorization()
+    }
     
-    @IBOutlet var stepLabel: UILabel!
-    
-    
-    let healthStore = HKHealthStore()
-
     func checkAuthorization() -> Bool {
         // Default to assuming that we're authorized
         var isEnabled = true
@@ -27,7 +29,7 @@ class CenterViewController: UIViewController {
             let steps = NSSet(object: HKQuantityType.quantityTypeForIdentifier(HKQuantityTypeIdentifierStepCount)!)
             
             // Now we can request authorization for step count data
-            healthStore.requestAuthorizationToShareTypes(nil, readTypes: steps as? Set<HKObjectType>) { (success, error) -> Void in
+            storage.requestAuthorizationToShareTypes(nil, readTypes: steps as? Set<HKObjectType>) { (success, error) -> Void in
                 isEnabled = success
             }
         }
@@ -47,7 +49,7 @@ class CenterViewController: UIViewController {
         // (Note, 1.day comes from an extension
         // You'll want to change that to your own NSDate
         let newDate = NSCalendar(calendarIdentifier: NSCalendarIdentifierGregorian)!.startOfDayForDate(NSDate())
-        
+
         let predicate = HKQuery.predicateForSamplesWithStartDate(newDate, endDate: NSDate(), options: .None)
         
         // The actual HealthKit Query which will fetch all of the steps and sub them up for us.
@@ -62,26 +64,6 @@ class CenterViewController: UIViewController {
             }
             completion(steps, error)
         }
-        healthStore.executeQuery(query)
+        storage.executeQuery(query)
     }
-    
-    @IBAction func checkButton(sender: AnyObject) {
-        var scount: Double = 0
-        recentSteps(){steps, error in
-            scount = steps
-            self.stepLabel.text = "Your steps today is \(scount)"
-        }
-    }
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        self.checkAuthorization()
-        // Do any additional setup after loading the view.
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-
 }

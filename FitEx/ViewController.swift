@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import HealthKit
 
 class ViewController: UIViewController {
     @IBOutlet weak var textUsername: UITextField!
@@ -34,9 +33,11 @@ class ViewController: UIViewController {
         let password:String! = textPassword.text
         if (username.isEmpty) {
             print("Please input your username")
+            //  make the better response in the future
         }
         else if (password.isEmpty) {
             print("Please input your password")
+            //  make the better response in the future
         }
         else {
             let json = [ "username":username, "password":password ]
@@ -50,17 +51,17 @@ class ViewController: UIViewController {
                 // insert json data to the request
                 request.HTTPBody = jsonData
                 let task = NSURLSession.sharedSession().dataTaskWithRequest(request){ data, response, error in
-                        if error != nil{
-                            print("dataTaskWithRequest Error -> \(error)")
-                            return
-                        }
-                        do {
-                            let result = try NSJSONSerialization.JSONObjectWithData(data!, options: []) as? [String:AnyObject]
-                            //print("\(result)")
-                            print("\(response)");
-                        } catch {
-                            print("Error -> \(error)")
-                        }
+                    print("\(response)");
+//                        if error != nil{
+//                            print("dataTaskWithRequest Error -> \(error)")
+//                            return
+//                        }
+//                        do {
+//                            let result = try NSJSONSerialization.JSONObjectWithData(data!, options: []) as? [String:AnyObject]
+//                            print("\(result)")
+//                        } catch {
+//                            print("Error -> \(error)")
+//                        }
                     }
                 task.resume()
             } catch {
@@ -69,13 +70,5 @@ class ViewController: UIViewController {
             self.performSegueWithIdentifier("segueIdentifier", sender: self)
         }
     }
-//    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-//        if(segue.identifier == "segueIdentifier") {
-//            let centerVC: CenterViewController = segue.destinationViewController as! CenterViewController
-//            centerVC.label1.text = self.textUsername.text!
-//            centerVC.label2.text = self.textPassword.text!
-//        }
-//
-//    }
 }
 

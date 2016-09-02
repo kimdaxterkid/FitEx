@@ -14,6 +14,7 @@
 		153E84CA1D749DCB00C25A8A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 153E84C91D749DCB00C25A8A /* Assets.xcassets */; };
 		153E84CD1D749DCB00C25A8A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 153E84CB1D749DCB00C25A8A /* LaunchScreen.storyboard */; };
 		15C2848C1D75E33000E9D988 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15C2848B1D75E33000E9D988 /* HealthKit.framework */; };
+		15FA05441D7924BA00069FB2 /* HealthKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15FA05431D7924BA00069FB2 /* HealthKit.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,6 +28,7 @@
 		153E84CE1D749DCB00C25A8A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		15C2848B1D75E33000E9D988 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
 		15C2848D1D75E33000E9D988 /* FitEx.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = FitEx.entitlements; sourceTree = "<group>"; };
+		15FA05431D7924BA00069FB2 /* HealthKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HealthKit.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,11 +66,12 @@
 				15C2848D1D75E33000E9D988 /* FitEx.entitlements */,
 				153E84C21D749DCB00C25A8A /* AppDelegate.swift */,
 				153E84C41D749DCB00C25A8A /* ViewController.swift */,
+				1531AB5F1D77E15E008E4F08 /* CenterViewController.swift */,
 				153E84C61D749DCB00C25A8A /* Main.storyboard */,
 				153E84C91D749DCB00C25A8A /* Assets.xcassets */,
 				153E84CB1D749DCB00C25A8A /* LaunchScreen.storyboard */,
 				153E84CE1D749DCB00C25A8A /* Info.plist */,
-				1531AB5F1D77E15E008E4F08 /* CenterViewController.swift */,
+				15FA05431D7924BA00069FB2 /* HealthKit.swift */,
 			);
 			path = FitEx;
 			sourceTree = "<group>";
@@ -150,6 +153,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				15FA05441D7924BA00069FB2 /* HealthKit.swift in Sources */,
 				1531AB601D77E15E008E4F08 /* CenterViewController.swift in Sources */,
 				153E84C51D749DCB00C25A8A /* ViewController.swift in Sources */,
 				153E84C31D749DCB00C25A8A /* AppDelegate.swift in Sources */,
