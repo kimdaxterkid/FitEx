@@ -14,67 +14,17 @@ class CenterViewController: UIViewController {
     @IBOutlet var stepLabel: UILabel!
     
     
-    let healthStore = HKHealthStore()
-
-    func checkAuthorization() -> Bool {
-        // Default to assuming that we're authorized
-        var isEnabled = true
-        
-        // Do we have access to HealthKit on this device?
-        if HKHealthStore.isHealthDataAvailable()
-        {
-            // We have to request each data type explicitly
-            let steps = NSSet(object: HKQuantityType.quantityTypeForIdentifier(HKQuantityTypeIdentifierStepCount)!)
-            
-            // Now we can request authorization for step count data
-            healthStore.requestAuthorizationToShareTypes(nil, readTypes: steps as? Set<HKObjectType>) { (success, error) -> Void in
-                isEnabled = success
-            }
-        }
-        else
-        {
-            isEnabled = false
-        }
-        
-        return isEnabled
-    }
-    
-    func recentSteps(completion: (Double, NSError?) -> () ) {
-        // The type of data we are requesting (this is redundant and could probably be an enumeration
-        let type = HKSampleType.quantityTypeForIdentifier(HKQuantityTypeIdentifierStepCount)
-        
-        // Our search predicate which will fetch data from now until a day ago
-        // (Note, 1.day comes from an extension
-        // You'll want to change that to your own NSDate
-        let newDate = NSCalendar(calendarIdentifier: NSCalendarIdentifierGregorian)!.startOfDayForDate(NSDate())
-        
-        let predicate = HKQuery.predicateForSamplesWithStartDate(newDate, endDate: NSDate(), options: .None)
-        
-        // The actual HealthKit Query which will fetch all of the steps and sub them up for us.
-        let query = HKSampleQuery(sampleType: type!, predicate: predicate, limit: 0, sortDescriptors: nil) { query, results, error in
-            var steps: Double = 0
-            if results?.count > 0
-            {
-                for result in results as! [HKQuantitySample]
-                {
-                    steps += result.quantity.doubleValueForUnit(HKUnit.countUnit())
-                }
-            }
-            completion(steps, error)
-        }
-        healthStore.executeQuery(query)
-    }
-    
+    @IBOutlet var testTextArea: UITextView!
     @IBAction func checkButton(sender: AnyObject) {
-        var scount: Double = 0
-        recentSteps(){steps, error in
-            scount = steps
-            self.stepLabel.text = "Your steps today is \(scount)"
-        }
+        let a = NSHTTPCookieStorage.sharedHTTPCookieStorage().cookies!
+        let defaults = NSUserDefaults.standardUserDefaults()
+        self.stepLabel.text = String(defaults.doubleForKey("stepsToday"))
+        self.testTextArea.text = String("\(a.count)\n\n")
+        self.testTextArea.text.appendContentsOf(String(a.first!.value))
     }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.checkAuthorization()
         // Do any additional setup after loading the view.
     }
 
