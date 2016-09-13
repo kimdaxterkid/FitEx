@@ -44,39 +44,44 @@ class ViewController: UIViewController {
         }
         else {
             let json = [ "username":username, "password":password ]
+            let defaults = NSUserDefaults.standardUserDefaults()
             // create post request
             do {
                 let url = NSURL(string: "http://128.173.239.215/login")!
                 let request = NSMutableURLRequest(URL: url)
                 request.setValue("application/json", forHTTPHeaderField: "Content-Type")
                 request.HTTPMethod = "POST"
-                
                 let jsonData = try NSJSONSerialization.dataWithJSONObject(json, options: .PrettyPrinted)
                 // insert json data to the request
                 request.HTTPBody = jsonData
                 let configuration = NSURLSessionConfiguration.defaultSessionConfiguration()
                 let session = NSURLSession(configuration: configuration)
                 let task = session.dataTaskWithRequest(request){ data, response, error in
-//                        do {
-//                            let result = try NSJSONSerialization.JSONObjectWithData(data!, options: []) as? [String:AnyObject]
-//                            print("\(result)")
-//                        } catch {
-//                            print("Error -> \(error)")
-//                        }
-//                        self.setCookies(response!)
-//                    print(response?.URL);
-//                    print(url);
+                    if (error != nil) {
+                        print("Error -> request from server")
+                        return
                     }
+                    do {
+                        //                        let result =
+                        try NSJSONSerialization.JSONObjectWithData(data!, options: []) as? [String:AnyObject]
+                    } catch {
+                        print("Error -> \(error)")
+                    }
+                    
+                }
                 task.resume()
+                
+                defaults.setValue(username, forKey: "username")
+                recentSteps(){steps, error in
+                    let scount = steps
+                    defaults.setDouble(scount, forKey: "stepsToday")
+                }
+                self.performSegueWithIdentifier("segueIdentifier", sender: self)
+                
             } catch {
                 print("buttonLogin -> jsonData Error")
             }
-            let defaults = NSUserDefaults.standardUserDefaults()
-            recentSteps(){steps, error in
-                let scount = steps
-                defaults.setDouble(scount, forKey: "stepsToday")
-            }
-            self.performSegueWithIdentifier("segueIdentifier", sender: self)
+
         }
     }
 
