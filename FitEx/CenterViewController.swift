@@ -12,55 +12,54 @@ import HealthKit
 class CenterViewController: UIViewController {
     
     @IBOutlet var stepLabel: UILabel!
-    
-    
     @IBOutlet var testTextArea: UITextView!
-    @IBAction func checkButton(sender: AnyObject) {
-//        let cookies = NSHTTPCookieStorage.sharedHTTPCookieStorage().cookies!
-        let defaults = NSUserDefaults.standardUserDefaults()
-        let username = defaults.valueForKey("username")
-        let stepsToday = defaults.doubleForKey("stepsToday")
+    
+    @IBAction func checkButton(_ sender: AnyObject) {
+        //let cookies = NSHTTPCookieStorage.sharedHTTPCookieStorage().cookies!
+        let defaults = UserDefaults.standard
+        let username = defaults.value(forKey: "username")
+        let stepsToday = defaults.double(forKey: "stepsToday")
         self.stepLabel.text = String(stepsToday)
-        let dateFormatter = NSDateFormatter()
-        let enUSPosixLocale = NSLocale(localeIdentifier: "en_US_POSIX")
+        let dateFormatter = DateFormatter()
+        let enUSPosixLocale = Locale(identifier: "en_US_POSIX")
         dateFormatter.locale = enUSPosixLocale
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss'Z'"
-        let iso8601String = dateFormatter.stringFromDate(NSDate())
-        print("\(NSDate())\n")
-        let json = [ "username":username!, "delta":0, "total":Int(stepsToday), "date":iso8601String, "id":9999, "type":"steps" ]
-        print("\(json)\n")
+        let iso8601String = dateFormatter.string(from: Date())
+        
+        let rawJSON = [ "username":username!, "delta":0, "total":Int(stepsToday), "date":iso8601String, "id":9999, "type":"steps" ]
+        let url = URL(string: "http://128.173.239.242/progress/auto")
+        let request = NSMutableURLRequest(url: url!)
+        request.httpMethod = "POST"
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         do {
-            let url = NSURL(string: "http://128.173.239.215/progress/auto")!
-            let request = NSMutableURLRequest(URL: url)
-            request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-            request.HTTPMethod = "POST"
-            let jsonData = try NSJSONSerialization.dataWithJSONObject(json, options: .PrettyPrinted)
-            request.HTTPBody = jsonData
-            let task = NSURLSession.sharedSession().dataTaskWithRequest(request){ data, response, error in
-                    if error != nil{
-                        print("Error -> steps post request from server -> \(error)")
-                        return
-                    }
-                    print("\(data)\n")
-                    print("\(response)")
-//                    do {
-//                        let result = try NSJSONSerialization.JSONObjectWithData(data!, options: []) as? [String:AnyObject]
-//                        print("\(result)")
-//                    } catch {
-//                        print("json data parse is wrong -> \(error)")
-//
-//                    }
-                
-            }
-            task.resume()
+            let jsonData = try JSONSerialization.data(withJSONObject: rawJSON, options: .prettyPrinted)
+            request.httpBody = jsonData
         } catch {
-            print("buttonLogin -> jsonData Error")
+            print("ERROR: jsonData error\n")
         }
+        let configuration = URLSessionConfiguration.default
+        let session = URLSession(configuration: configuration)
+        let task = session.dataTask(with: request as URLRequest) { (data, response, error) in
+            if let error = error {
+                let alertController = UIAlertController(title: "HTTP Connection Failed!", message: "Failed with error: \(error.localizedDescription)", preferredStyle: UIAlertControllerStyle.alert)
+                alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                self.present(alertController, animated: true, completion: nil)
+            }
+            else if let response = response as? HTTPURLResponse {
+                // If request is fulfilled
+                // self.productDataObtainedFromAPI = NSMutableData()
+                if (response.statusCode == 200) {
+                    DispatchQueue.main.async {
+                        print("post steps success")
+                    }
+                }
+            }
+        }
+        task.resume()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
     }
 
     override func didReceiveMemoryWarning() {

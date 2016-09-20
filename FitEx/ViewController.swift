@@ -10,128 +10,78 @@ import UIKit
 import HealthKit
 
 class ViewController: UIViewController {
+    var username: String?
+    var password: String?
     @IBOutlet weak var textUsername: UITextField!
     @IBOutlet weak var textPassword: UITextField!
-    let healthStore = HKHealthStore()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.checkAuthorization()
-        // Do any additional setup after loading the view, typically from a nib.
+        HealthKit().recentSteps(){steps, error in
+            let scount = steps
+            UserDefaults.standard.set(scount, forKey: "stepsToday")
+            print("get the steps \(scount)")
+        }
     }
-
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
-    @IBAction func dismissUsernameKeyboard(sender: AnyObject) {
+    
+    @IBAction func dismissUsernameKeyboard(_ sender: AnyObject) {
         self.resignFirstResponder()
     }
-    @IBAction func dismissPasswordKeyboard(sender: AnyObject) {
+    @IBAction func dismissPasswordKeyboard(_ sender: AnyObject) {
         self.resignFirstResponder()
     }
-    @IBAction func buttonLogin(sender: AnyObject) {
-        // prepare json data
-        let username:String! = textUsername.text
-        let password:String! = textPassword.text
-        if (username.isEmpty) {
-            print("Please input your username")
-            //  make the better response in the future
+    
+    @IBAction func buttonLogin(_ sender: AnyObject) {
+        username = textUsername.text
+        password = textPassword.text
+        if ((username?.isEmpty) == true){
+            let alertController = UIAlertController(title: "Username is empty", message: "Please input your username", preferredStyle: .alert)
+            let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+            alertController.addAction(okAction)
+            present(alertController, animated: true, completion: nil)
         }
-        else if (password.isEmpty) {
-            print("Please input your password")
-            //  make the better response in the future
+        else if ((password?.isEmpty) == true) {
+            let alertController = UIAlertController(title: "Password is empty", message: "Please input your password", preferredStyle: .alert)
+            let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+            alertController.addAction(okAction)
+            present(alertController, animated: true, completion: nil)
         }
-        else {
-            let json = [ "username":username, "password":password ]
-            let defaults = NSUserDefaults.standardUserDefaults()
-            // create post request
+        else{
+            let rawJSON = [ "username":username!, "password":password! ]
+            let url = URL(string: "http://128.173.239.242/login")
+            let request = NSMutableURLRequest(url: url!) // Set the HTTP request method to "POST"
+            request.httpMethod = "POST"
+            request.setValue("application/json", forHTTPHeaderField: "Content-Type")
             do {
-                let url = NSURL(string: "http://128.173.239.215/login")!
-                let request = NSMutableURLRequest(URL: url)
-                request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-                request.HTTPMethod = "POST"
-                let jsonData = try NSJSONSerialization.dataWithJSONObject(json, options: .PrettyPrinted)
-                // insert json data to the request
-                request.HTTPBody = jsonData
-                let configuration = NSURLSessionConfiguration.defaultSessionConfiguration()
-                let session = NSURLSession(configuration: configuration)
-                let task = session.dataTaskWithRequest(request){ data, response, error in
-                    if (error != nil) {
-                        print("Error -> request from server")
-                        return
-                    }
-                    do {
-                        //                        let result =
-                        try NSJSONSerialization.JSONObjectWithData(data!, options: []) as? [String:AnyObject]
-                    } catch {
-                        print("Error -> \(error)")
-                    }
-                    
-                }
-                task.resume()
-                
-                defaults.setValue(username, forKey: "username")
-                recentSteps(){steps, error in
-                    let scount = steps
-                    defaults.setDouble(scount, forKey: "stepsToday")
-                }
-                self.performSegueWithIdentifier("segueIdentifier", sender: self)
-                
+                let jsonData = try JSONSerialization.data(withJSONObject: rawJSON, options: .prettyPrinted)
+                request.httpBody = jsonData
             } catch {
-                print("buttonLogin -> jsonData Error")
+                print("ERROR: jsonData error\n")
             }
-
-        }
-    }
-
-    
-    func checkAuthorization() -> Bool {
-        // Default to assuming that we're authorized
-        var isEnabled = true
-        
-        // Do we have access to HealthKit on this device?
-        if HKHealthStore.isHealthDataAvailable()
-        {
-            // We have to request each data type explicitly
-            let steps = NSSet(object: HKQuantityType.quantityTypeForIdentifier(HKQuantityTypeIdentifierStepCount)!)
-            
-            // Now we can request authorization for step count data
-            healthStore.requestAuthorizationToShareTypes(nil, readTypes: steps as? Set<HKObjectType>) { (success, error) -> Void in
-                isEnabled = success
-            }
-        }
-        else
-        {
-            isEnabled = false
-        }
-        return isEnabled
-    }
-    
-    func recentSteps(completion: (Double, NSError?) -> () ) {
-        // The type of data we are requesting (this is redundant and could probably be an enumeration
-        let type = HKSampleType.quantityTypeForIdentifier(HKQuantityTypeIdentifierStepCount)
-        
-        // Our search predicate which will fetch data from now until a day ago
-        // (Note, 1.day comes from an extension
-        // You'll want to change that to your own NSDate
-        let newDate = NSCalendar(calendarIdentifier: NSCalendarIdentifierGregorian)!.startOfDayForDate(NSDate())
-        
-        let predicate = HKQuery.predicateForSamplesWithStartDate(newDate, endDate: NSDate(), options: .None)
-        
-        // The actual HealthKit Query which will fetch all of the steps and sub them up for us.
-        let query = HKSampleQuery(sampleType: type!, predicate: predicate, limit: 0, sortDescriptors: nil) { query, results, error in
-            var steps: Double = 0
-            if results?.count > 0
-            {
-                for result in results as! [HKQuantitySample]
-                {
-                    steps += result.quantity.doubleValueForUnit(HKUnit.countUnit())
+            let configuration = URLSessionConfiguration.default
+            let session = URLSession(configuration: configuration)
+            let task = session.dataTask(with: request as URLRequest) { (data, response, error) in
+                if let error = error {
+                    let alertController = UIAlertController(title: "HTTP Connection Failed!", message: "Failed with error: \(error.localizedDescription)", preferredStyle: UIAlertControllerStyle.alert)
+                    alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                    self.present(alertController, animated: true, completion: nil)
+                }
+                else if let response = response as? HTTPURLResponse {
+                    // If request is fulfilled
+                    // self.productDataObtainedFromAPI = NSMutableData()
+                    if (response.statusCode == 200) {
+                        DispatchQueue.main.async {
+                            UserDefaults.standard.setValue(self.username!, forKey: "username")
+                            self.performSegue(withIdentifier: "segueIdentifier", sender: self)
+                        }
+                    }
                 }
             }
-            completion(steps, error)
+            task.resume()
         }
-        healthStore.executeQuery(query)
     }
 }
 

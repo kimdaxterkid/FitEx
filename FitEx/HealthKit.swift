@@ -9,15 +9,16 @@
 import Foundation
 import HealthKit
 
-class HealthKit
-{
+class HealthKit {
     let storage = HKHealthStore()
-    var steps: Double = 0.0
+    
     init()
     {
-        checkAuthorization()
+        if (checkAuthorization()) {
+            print("HealthKit Data Available.")
+        }
     }
-    
+
     func checkAuthorization() -> Bool {
         // Default to assuming that we're authorized
         var isEnabled = true
@@ -26,10 +27,10 @@ class HealthKit
         if HKHealthStore.isHealthDataAvailable()
         {
             // We have to request each data type explicitly
-            let steps = NSSet(object: HKQuantityType.quantityTypeForIdentifier(HKQuantityTypeIdentifierStepCount)!)
+            let steps = NSSet(object: HKQuantityType.quantityType(forIdentifier: HKQuantityTypeIdentifier.stepCount)!)
             
             // Now we can request authorization for step count data
-            storage.requestAuthorizationToShareTypes(nil, readTypes: steps as? Set<HKObjectType>) { (success, error) -> Void in
+            storage.requestAuthorization(toShare: nil, read: steps as? Set<HKObjectType>) { (success, error) -> Void in
                 isEnabled = success
             }
         }
@@ -41,29 +42,26 @@ class HealthKit
         return isEnabled
     }
     
-    func recentSteps(completion: (Double, NSError?) -> () ) {
+    func recentSteps(_ completion: @escaping (Double, NSError?) -> () ) {
         // The type of data we are requesting (this is redundant and could probably be an enumeration
-        let type = HKSampleType.quantityTypeForIdentifier(HKQuantityTypeIdentifierStepCount)
-        
-        // Our search predicate which will fetch data from now until a day ago
-        // (Note, 1.day comes from an extension
+        let type = HKSampleType.quantityType(forIdentifier: HKQuantityTypeIdentifier.stepCount)
         // You'll want to change that to your own NSDate
-        let newDate = NSCalendar(calendarIdentifier: NSCalendarIdentifierGregorian)!.startOfDayForDate(NSDate())
-
-        let predicate = HKQuery.predicateForSamplesWithStartDate(newDate, endDate: NSDate(), options: .None)
         
+        let predicate = HKQuery.predicateForSamples(withStart: Date() - 86400, end: Date(), options: HKQueryOptions())
         // The actual HealthKit Query which will fetch all of the steps and sub them up for us.
-        let query = HKSampleQuery(sampleType: type!, predicate: predicate, limit: 0, sortDescriptors: nil) { query, results, error in
+        let query = HKSampleQuery(sampleType: type!, predicate: predicate, limit: 0, sortDescriptors: nil) { query, stepsresults, error in
             var steps: Double = 0
-            if results?.count > 0
-            {
+            if let results = stepsresults {
                 for result in results as! [HKQuantitySample]
                 {
-                    steps += result.quantity.doubleValueForUnit(HKUnit.countUnit())
+                    steps += result.quantity.doubleValue(for: HKUnit.count())
                 }
             }
-            completion(steps, error)
+            else {
+                print("No steps data in the sample query.")
+            }
+            completion(steps, error as NSError?)
         }
-        storage.executeQuery(query)
+        storage.execute(query)
     }
 }
