@@ -17,11 +17,6 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        HealthKit().recentSteps(){steps, error in
-            let scount = steps
-            UserDefaults.standard.set(scount, forKey: "stepsToday")
-            print("get the steps \(scount)")
-        }
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -51,6 +46,8 @@ class ViewController: UIViewController {
         }
         else{
             let rawJSON = [ "username":username!, "password":password! ]
+            // http://128.173.239.242/
+            // http://128.173.236.164/
             let url = URL(string: "http://128.173.239.242/login")
             let request = NSMutableURLRequest(url: url!) // Set the HTTP request method to "POST"
             request.httpMethod = "POST"

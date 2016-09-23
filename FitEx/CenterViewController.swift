@@ -11,15 +11,21 @@ import HealthKit
 
 class CenterViewController: UIViewController {
     
-    @IBOutlet var stepLabel: UILabel!
     @IBOutlet var testTextArea: UITextView!
-    
     @IBAction func checkButton(_ sender: AnyObject) {
         //let cookies = NSHTTPCookieStorage.sharedHTTPCookieStorage().cookies!
+        HealthKit().recentSteps(){steps, error in
+            let scount = steps
+            UserDefaults.standard.set(scount, forKey: "stepsToday")
+            UserDefaults.standard.synchronize()
+        }
+        let currentStep = UserDefaults.standard.value(forKey: "stepsToday")
+        testTextArea.text = "\(currentStep)"
+    }
+    @IBAction func postButton(_ sender: UIButton) {
         let defaults = UserDefaults.standard
         let username = defaults.value(forKey: "username")
         let stepsToday = defaults.double(forKey: "stepsToday")
-        self.stepLabel.text = String(stepsToday)
         let dateFormatter = DateFormatter()
         let enUSPosixLocale = Locale(identifier: "en_US_POSIX")
         dateFormatter.locale = enUSPosixLocale
@@ -51,12 +57,14 @@ class CenterViewController: UIViewController {
                 if (response.statusCode == 200) {
                     DispatchQueue.main.async {
                         print("post steps success")
+                        self.testTextArea.text = "Post button send your steps bakc to fitex.org:     \(stepsToday)\n"
                     }
                 }
             }
         }
         task.resume()
     }
+
     
     override func viewDidLoad() {
         super.viewDidLoad()

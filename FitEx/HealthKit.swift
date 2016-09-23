@@ -46,8 +46,10 @@ class HealthKit {
         // The type of data we are requesting (this is redundant and could probably be an enumeration
         let type = HKSampleType.quantityType(forIdentifier: HKQuantityTypeIdentifier.stepCount)
         // You'll want to change that to your own NSDate
-        
-        let predicate = HKQuery.predicateForSamples(withStart: Date() - 86400, end: Date(), options: HKQueryOptions())
+        let start:Date = Date().addingTimeInterval(-86400)
+        let end: Date = Date()
+        print("\(start)\n\(end)")
+        let predicate = HKQuery.predicateForSamples(withStart: start, end: end, options: HKQueryOptions())
         // The actual HealthKit Query which will fetch all of the steps and sub them up for us.
         let query = HKSampleQuery(sampleType: type!, predicate: predicate, limit: 0, sortDescriptors: nil) { query, stepsresults, error in
             var steps: Double = 0

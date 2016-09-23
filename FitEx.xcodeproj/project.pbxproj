@@ -46,9 +46,9 @@
 		153E84B61D749DCA00C25A8A = {
 			isa = PBXGroup;
 			children = (
-				15C2848B1D75E33000E9D988 /* HealthKit.framework */,
 				153E84C11D749DCB00C25A8A /* FitEx */,
 				153E84C01D749DCB00C25A8A /* Products */,
+				15C2848B1D75E33000E9D988 /* HealthKit.framework */,
 			);
 			sourceTree = "<group>";
 		};
@@ -67,11 +67,11 @@
 				153E84C21D749DCB00C25A8A /* AppDelegate.swift */,
 				153E84C41D749DCB00C25A8A /* ViewController.swift */,
 				1531AB5F1D77E15E008E4F08 /* CenterViewController.swift */,
-				153E84C61D749DCB00C25A8A /* Main.storyboard */,
-				153E84C91D749DCB00C25A8A /* Assets.xcassets */,
-				153E84CB1D749DCB00C25A8A /* LaunchScreen.storyboard */,
 				15FA05431D7924BA00069FB2 /* HealthKit.swift */,
+				153E84CB1D749DCB00C25A8A /* LaunchScreen.storyboard */,
+				153E84C61D749DCB00C25A8A /* Main.storyboard */,
 				153E84CE1D749DCB00C25A8A /* Info.plist */,
+				153E84C91D749DCB00C25A8A /* Assets.xcassets */,
 			);
 			path = FitEx;
 			sourceTree = "<group>";
