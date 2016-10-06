@@ -13,8 +13,11 @@
 		153E84C81D749DCB00C25A8A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 153E84C61D749DCB00C25A8A /* Main.storyboard */; };
 		153E84CA1D749DCB00C25A8A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 153E84C91D749DCB00C25A8A /* Assets.xcassets */; };
 		153E84CD1D749DCB00C25A8A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 153E84CB1D749DCB00C25A8A /* LaunchScreen.storyboard */; };
+		1586A5541DA49361006D9452 /* ISO8601.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1586A5531DA49361006D9452 /* ISO8601.swift */; };
 		15C2848C1D75E33000E9D988 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15C2848B1D75E33000E9D988 /* HealthKit.framework */; };
 		15FA05441D7924BA00069FB2 /* HealthKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15FA05431D7924BA00069FB2 /* HealthKit.swift */; };
+		15FF5ED61DA34E3A00AEDC71 /* BackgroundTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15FF5ED51DA34E3A00AEDC71 /* BackgroundTask.swift */; };
+		15FF5ED81DA34ED100AEDC71 /* FitExSong.wav in Resources */ = {isa = PBXBuildFile; fileRef = 15FF5ED71DA34ED100AEDC71 /* FitExSong.wav */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,9 +29,12 @@
 		153E84C91D749DCB00C25A8A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		153E84CC1D749DCB00C25A8A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		153E84CE1D749DCB00C25A8A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1586A5531DA49361006D9452 /* ISO8601.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ISO8601.swift; sourceTree = "<group>"; };
 		15C2848B1D75E33000E9D988 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
 		15C2848D1D75E33000E9D988 /* FitEx.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = FitEx.entitlements; sourceTree = "<group>"; };
 		15FA05431D7924BA00069FB2 /* HealthKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HealthKit.swift; sourceTree = "<group>"; };
+		15FF5ED51DA34E3A00AEDC71 /* BackgroundTask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackgroundTask.swift; sourceTree = "<group>"; };
+		15FF5ED71DA34ED100AEDC71 /* FitExSong.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = FitExSong.wav; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,9 +74,12 @@
 				153E84C41D749DCB00C25A8A /* ViewController.swift */,
 				1531AB5F1D77E15E008E4F08 /* CenterViewController.swift */,
 				15FA05431D7924BA00069FB2 /* HealthKit.swift */,
+				15FF5ED51DA34E3A00AEDC71 /* BackgroundTask.swift */,
+				1586A5531DA49361006D9452 /* ISO8601.swift */,
 				153E84CB1D749DCB00C25A8A /* LaunchScreen.storyboard */,
 				153E84C61D749DCB00C25A8A /* Main.storyboard */,
 				153E84CE1D749DCB00C25A8A /* Info.plist */,
+				15FF5ED71DA34ED100AEDC71 /* FitExSong.wav */,
 				153E84C91D749DCB00C25A8A /* Assets.xcassets */,
 			);
 			path = FitEx;
@@ -144,6 +153,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				15FF5ED81DA34ED100AEDC71 /* FitExSong.wav in Resources */,
 				153E84CD1D749DCB00C25A8A /* LaunchScreen.storyboard in Resources */,
 				153E84CA1D749DCB00C25A8A /* Assets.xcassets in Resources */,
 				153E84C81D749DCB00C25A8A /* Main.storyboard in Resources */,
@@ -159,7 +169,9 @@
 			files = (
 				15FA05441D7924BA00069FB2 /* HealthKit.swift in Sources */,
 				1531AB601D77E15E008E4F08 /* CenterViewController.swift in Sources */,
+				1586A5541DA49361006D9452 /* ISO8601.swift in Sources */,
 				153E84C51D749DCB00C25A8A /* ViewController.swift in Sources */,
+				15FF5ED61DA34E3A00AEDC71 /* BackgroundTask.swift in Sources */,
 				153E84C31D749DCB00C25A8A /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -282,6 +294,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = FitEx/FitEx.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				DEVELOPMENT_TEAM = C34536CJNF;
 				INFOPLIST_FILE = FitEx/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -297,6 +310,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = FitEx/FitEx.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				DEVELOPMENT_TEAM = C34536CJNF;
 				INFOPLIST_FILE = FitEx/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

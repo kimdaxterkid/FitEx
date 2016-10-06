@@ -14,9 +14,6 @@ class HealthKit {
     
     init()
     {
-        if (checkAuthorization()) {
-            print("HealthKit Data Available.")
-        }
     }
 
     func checkAuthorization() -> Bool {
@@ -46,10 +43,9 @@ class HealthKit {
         // The type of data we are requesting (this is redundant and could probably be an enumeration
         let type = HKSampleType.quantityType(forIdentifier: HKQuantityTypeIdentifier.stepCount)
         // You'll want to change that to your own NSDate
-        let start:Date = Date().addingTimeInterval(-86400)
-        let end: Date = Date()
-        print("\(start)\n\(end)")
-        let predicate = HKQuery.predicateForSamples(withStart: start, end: end, options: HKQueryOptions())
+        let startOfDay:Date = NSCalendar.current.startOfDay(for: Date())
+        let end:Date = Date()
+        let predicate = HKQuery.predicateForSamples(withStart: startOfDay, end: end, options: HKQueryOptions())
         // The actual HealthKit Query which will fetch all of the steps and sub them up for us.
         let query = HKSampleQuery(sampleType: type!, predicate: predicate, limit: 0, sortDescriptors: nil) { query, stepsresults, error in
             var steps: Double = 0
@@ -60,6 +56,7 @@ class HealthKit {
                 }
             }
             else {
+                print("\(startOfDay)\n\(end)")
                 print("No steps data in the sample query.")
             }
             completion(steps, error as NSError?)

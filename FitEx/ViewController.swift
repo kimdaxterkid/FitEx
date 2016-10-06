@@ -17,6 +17,7 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        let _ = HealthKit().checkAuthorization()
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
