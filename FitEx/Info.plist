@@ -33,9 +33,14 @@
 	<string>Location Always Usage Description</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>Location When In Use Usage Description</string>
+	<key>NSBluetoothPeripheralUsageDescription</key>
+	<string>Bluetooth permissions are required to connect to the pebble watch</string>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>audio</string>
+		<string>bluetooth-central</string>
+		<string>bluetooth-peripheral</string>
+		<string>external-accessory</string>
 		<string>fetch</string>
 		<string>location</string>
 	</array>
@@ -53,6 +58,10 @@
 		<string>UIInterfaceOrientationPortrait</string>
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
+	</array>
+	<key>UISupportedExternalAccessoryProtocols</key>
+	<array>
+		<string>com.getpebble.public</string>
 	</array>
 	<key>UISupportedInterfaceOrientations~ipad</key>
 	<array>

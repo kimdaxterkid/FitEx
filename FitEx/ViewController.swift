@@ -49,7 +49,7 @@ class ViewController: UIViewController {
             let rawJSON = [ "username":username!, "password":password! ]
             // http://128.173.239.242/
             // http://128.173.236.164/
-            let url = URL(string: "http://128.173.239.242/login")
+            let url = URL(string: "http://128.173.236.164/login")
             let request = NSMutableURLRequest(url: url!) // Set the HTTP request method to "POST"
             request.httpMethod = "POST"
             request.setValue("application/json", forHTTPHeaderField: "Content-Type")

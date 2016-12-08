@@ -13,11 +13,14 @@
 		153E84C81D749DCB00C25A8A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 153E84C61D749DCB00C25A8A /* Main.storyboard */; };
 		153E84CA1D749DCB00C25A8A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 153E84C91D749DCB00C25A8A /* Assets.xcassets */; };
 		153E84CD1D749DCB00C25A8A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 153E84CB1D749DCB00C25A8A /* LaunchScreen.storyboard */; };
+		157B88421DEDD7FB0033C592 /* PebbleData.m in Sources */ = {isa = PBXBuildFile; fileRef = 157B883F1DEDD7FB0033C592 /* PebbleData.m */; };
+		157B88431DEDD7FB0033C592 /* PebbleHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 157B88411DEDD7FB0033C592 /* PebbleHelper.m */; };
 		1586A5541DA49361006D9452 /* ISO8601.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1586A5531DA49361006D9452 /* ISO8601.swift */; };
 		15C2848C1D75E33000E9D988 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15C2848B1D75E33000E9D988 /* HealthKit.framework */; };
 		15FA05441D7924BA00069FB2 /* HealthKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15FA05431D7924BA00069FB2 /* HealthKit.swift */; };
 		15FF5ED61DA34E3A00AEDC71 /* BackgroundTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15FF5ED51DA34E3A00AEDC71 /* BackgroundTask.swift */; };
 		15FF5ED81DA34ED100AEDC71 /* FitExSong.wav in Resources */ = {isa = PBXBuildFile; fileRef = 15FF5ED71DA34ED100AEDC71 /* FitExSong.wav */; };
+		C54E344F659119C30EB4A0F5 /* Pods_FitEx.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D01D0692FD4DB0BBE1ECE691 /* Pods_FitEx.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,12 +32,20 @@
 		153E84C91D749DCB00C25A8A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		153E84CC1D749DCB00C25A8A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		153E84CE1D749DCB00C25A8A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		157B883B1DEDD7470033C592 /* FitEx-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "FitEx-Bridging-Header.h"; sourceTree = SOURCE_ROOT; };
+		157B883E1DEDD7FB0033C592 /* PebbleData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PebbleData.h; sourceTree = "<group>"; };
+		157B883F1DEDD7FB0033C592 /* PebbleData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PebbleData.m; sourceTree = "<group>"; };
+		157B88401DEDD7FB0033C592 /* PebbleHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PebbleHelper.h; sourceTree = "<group>"; };
+		157B88411DEDD7FB0033C592 /* PebbleHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PebbleHelper.m; sourceTree = "<group>"; };
 		1586A5531DA49361006D9452 /* ISO8601.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ISO8601.swift; sourceTree = "<group>"; };
 		15C2848B1D75E33000E9D988 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
 		15C2848D1D75E33000E9D988 /* FitEx.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = FitEx.entitlements; sourceTree = "<group>"; };
 		15FA05431D7924BA00069FB2 /* HealthKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HealthKit.swift; sourceTree = "<group>"; };
 		15FF5ED51DA34E3A00AEDC71 /* BackgroundTask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackgroundTask.swift; sourceTree = "<group>"; };
 		15FF5ED71DA34ED100AEDC71 /* FitExSong.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = FitExSong.wav; sourceTree = "<group>"; };
+		21A1E51BE1BEC7CD38BEFB74 /* Pods-FitEx.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FitEx.release.xcconfig"; path = "Pods/Target Support Files/Pods-FitEx/Pods-FitEx.release.xcconfig"; sourceTree = "<group>"; };
+		AE9D9E8103772ACD24D69879 /* Pods-FitEx.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FitEx.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FitEx/Pods-FitEx.debug.xcconfig"; sourceTree = "<group>"; };
+		D01D0692FD4DB0BBE1ECE691 /* Pods_FitEx.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FitEx.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -43,6 +54,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				15C2848C1D75E33000E9D988 /* HealthKit.framework in Frameworks */,
+				C54E344F659119C30EB4A0F5 /* Pods_FitEx.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -54,7 +66,8 @@
 			children = (
 				153E84C11D749DCB00C25A8A /* FitEx */,
 				153E84C01D749DCB00C25A8A /* Products */,
-				15C2848B1D75E33000E9D988 /* HealthKit.framework */,
+				4E1FEBF91B30CC69298C8962 /* Pods */,
+				3FB071DBC04285307DFE38DD /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -69,8 +82,10 @@
 		153E84C11D749DCB00C25A8A /* FitEx */ = {
 			isa = PBXGroup;
 			children = (
-				15C2848D1D75E33000E9D988 /* FitEx.entitlements */,
 				153E84C21D749DCB00C25A8A /* AppDelegate.swift */,
+				15C2848D1D75E33000E9D988 /* FitEx.entitlements */,
+				157B883B1DEDD7470033C592 /* FitEx-Bridging-Header.h */,
+				157B88441DEDD8050033C592 /* PebbleKit */,
 				153E84C41D749DCB00C25A8A /* ViewController.swift */,
 				1531AB5F1D77E15E008E4F08 /* CenterViewController.swift */,
 				15FA05431D7924BA00069FB2 /* HealthKit.swift */,
@@ -85,6 +100,35 @@
 			path = FitEx;
 			sourceTree = "<group>";
 		};
+		157B88441DEDD8050033C592 /* PebbleKit */ = {
+			isa = PBXGroup;
+			children = (
+				157B883E1DEDD7FB0033C592 /* PebbleData.h */,
+				157B883F1DEDD7FB0033C592 /* PebbleData.m */,
+				157B88401DEDD7FB0033C592 /* PebbleHelper.h */,
+				157B88411DEDD7FB0033C592 /* PebbleHelper.m */,
+			);
+			name = PebbleKit;
+			sourceTree = "<group>";
+		};
+		3FB071DBC04285307DFE38DD /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				15C2848B1D75E33000E9D988 /* HealthKit.framework */,
+				D01D0692FD4DB0BBE1ECE691 /* Pods_FitEx.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		4E1FEBF91B30CC69298C8962 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				AE9D9E8103772ACD24D69879 /* Pods-FitEx.debug.xcconfig */,
+				21A1E51BE1BEC7CD38BEFB74 /* Pods-FitEx.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -92,9 +136,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 153E84D11D749DCB00C25A8A /* Build configuration list for PBXNativeTarget "FitEx" */;
 			buildPhases = (
+				00C8A7B990AC7DB4578F4F46 /* [CP] Check Pods Manifest.lock */,
 				153E84BB1D749DCA00C25A8A /* Sources */,
 				153E84BC1D749DCA00C25A8A /* Frameworks */,
 				153E84BD1D749DCA00C25A8A /* Resources */,
+				E280858EDE9D96A4C453DA09 /* [CP] Embed Pods Frameworks */,
+				0F124292B30AC5E40F72B227 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -118,7 +165,7 @@
 					153E84BE1D749DCA00C25A8A = {
 						CreatedOnToolsVersion = 7.3.1;
 						DevelopmentTeam = C34536CJNF;
-						LastSwiftMigration = 0800;
+						LastSwiftMigration = 0810;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;
@@ -162,6 +209,54 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		00C8A7B990AC7DB4578F4F46 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		0F124292B30AC5E40F72B227 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-FitEx/Pods-FitEx-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E280858EDE9D96A4C453DA09 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-FitEx/Pods-FitEx-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		153E84BB1D749DCA00C25A8A /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -170,8 +265,10 @@
 				15FA05441D7924BA00069FB2 /* HealthKit.swift in Sources */,
 				1531AB601D77E15E008E4F08 /* CenterViewController.swift in Sources */,
 				1586A5541DA49361006D9452 /* ISO8601.swift in Sources */,
+				157B88431DEDD7FB0033C592 /* PebbleHelper.m in Sources */,
 				153E84C51D749DCB00C25A8A /* ViewController.swift in Sources */,
 				15FF5ED61DA34E3A00AEDC71 /* BackgroundTask.swift in Sources */,
+				157B88421DEDD7FB0033C592 /* PebbleData.m in Sources */,
 				153E84C31D749DCB00C25A8A /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -290,8 +387,10 @@
 		};
 		153E84D21D749DCB00C25A8A /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = AE9D9E8103772ACD24D69879 /* Pods-FitEx.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = FitEx/FitEx.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				DEVELOPMENT_TEAM = C34536CJNF;
@@ -300,14 +399,18 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.taiwenjin.FitEx;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "FitEx-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
 		153E84D31D749DCB00C25A8A /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 21A1E51BE1BEC7CD38BEFB74 /* Pods-FitEx.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = FitEx/FitEx.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				DEVELOPMENT_TEAM = C34536CJNF;
@@ -316,6 +419,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.taiwenjin.FitEx;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "FitEx-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;

@@ -48,7 +48,7 @@ class HealthKit {
         let predicate = HKQuery.predicateForSamples(withStart: startOfDay, end: end, options: HKQueryOptions())
         // The actual HealthKit Query which will fetch all of the steps and sub them up for us.
         let query = HKSampleQuery(sampleType: type!, predicate: predicate, limit: 0, sortDescriptors: nil) { query, stepsresults, error in
-            var steps: Double = 0
+            var steps: Double = 0.0
             if let results = stepsresults {
                 for result in results as! [HKQuantitySample]
                 {
@@ -58,6 +58,9 @@ class HealthKit {
             else {
                 print("\(startOfDay)\n\(end)")
                 print("No steps data in the sample query.")
+            }
+            if (steps == 0.0) {
+                steps = -1.0
             }
             completion(steps, error as NSError?)
         }
